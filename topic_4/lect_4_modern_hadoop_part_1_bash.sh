@@ -16,7 +16,7 @@ hdfs dfs -rm -R /jovyan/logs
 # Data
 
 hdfs dfs -mkdir /jovyan/raw
-hdfs dfs -put ~/__DATA/IBDT_Spring_2024/topic_4/jhub_logs.csv /jovyan/raw/
+hdfs dfs -put ~/__DATA/IBDT_Spring_2024/topic_1/jhub_logs.csv /jovyan/raw/
 
 # PySpark processing
 
