@@ -123,6 +123,14 @@ FROM
    `binding01`
 GROUP BY option_symbol
 
+INSERT INTO `binding02vol`
+SELECT
+   option_symbol as option_symbol,
+   SUM(volume) as volume
+FROM
+   `binding01`
+GROUP BY option_symbol
+
 /* Marlet Cap data */
 
 SELECT
