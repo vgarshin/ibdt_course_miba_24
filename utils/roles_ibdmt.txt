@@ -1,0 +1,12 @@
+viewer
+compute.admin
+storage.admin
+vpc.publicAdmin
+iam.serviceAccounts.admin
+iam.serviceAccounts.keyAdmin
+managed-clickhouse.admin
+managed-postgresql.admin
+serverless.functions.admin
+datalens.instances.user
+datalens.creator
+yq.admin

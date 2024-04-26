@@ -1,0 +1,3 @@
+storage.admin
+serverless.functions.invoker
+yq.admin
