@@ -7,16 +7,16 @@
 FLAG="add"
 
 # flag for organization roles
-ORGFLAG="set" # ibdmt course
-#ORGFLAG="no" # e2e course
+#ORGFLAG="set" # ibdmt course
+ORGFLAG="no" # e2e course
 ORGID="bpfldhk2bssh1eebr06j"
 
 # flag to "create" folders
 FOLDER="create"
 
 # flag to "create" service accounts
-SRVACC="create" # ibdmt course
-#SRVACC="no" # e2e course
+#SRVACC="create" # ibdmt course
+SRVACC="no" # e2e course
 
 # main cloud
 CLOUD="cloud-gsom"
@@ -38,6 +38,7 @@ while read lineuser; do
   echo user email ${userarr[2]}
   foldername="${userarr[2]%@*}"
   foldername=${foldername//./""}
+  foldername="$(tr [A-Z] [a-z] <<< "$foldername")"
   echo user folder ${foldername}
   echo user id ${output[1]}
 
@@ -120,8 +121,8 @@ while read lineuser; do
     else
       echo "no action"
     fi
-  done < roles_ibdmt.txt # ibdmt course
-  #done < roles_e2e.txt # e2e course
+  #done < roles_ibdmt.txt # ibdmt course
+  done < roles_e2e.txt # e2e course
 
   # iterate over common roles and add or remove
   # roles for common folder to federated user
@@ -150,5 +151,6 @@ while read lineuser; do
   echo new roles in ${foldername}
   yc resource-manager folder list-access-bindings ${foldername}
 
-done < students_ibdmt_24.txt # ibdmt course
-#done < students_e2e_24.txt # e2e course
+#done < students_ibdmt_24.txt # ibdmt course
+done < students_e2e_24.txt # e2e course
+#done < test_e2e.txt
