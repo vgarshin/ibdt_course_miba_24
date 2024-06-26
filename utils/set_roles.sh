@@ -1,22 +1,25 @@
 #!/usr/bin/env bash
 
-# read list of federated users from file
-# and setting or removing roles for folder
+# this script reads list of federated users 
+# with their roles from files
+# and sets or removes roles for folder
 
 # flag "add" or "remove"
-FLAG="add"
+FLAG="remove"
 
 # flag for organization roles
-#ORGFLAG="set" # ibdmt course
-ORGFLAG="no" # e2e course
+ORGFLAG="no" # 'set' for ibdmt course, 'no' e2e course
 ORGID="bpfldhk2bssh1eebr06j"
 
 # flag to "create" folders
 FOLDER="create"
 
 # flag to "create" service accounts
-#SRVACC="create" # ibdmt course
-SRVACC="no" # e2e course
+SRVACC="no" # 'create' for ibdmt course, 'no' e2e course
+
+# files with students and roles
+ROLES_FILE="roles_e2e.txt" # 'roles_ibdmt.txt' for ibdmt course, 'roles_e2e.txt' for e2e course
+USERS_FILE="students_e2e_24.txt" # 'students_ibdmt_24.txt' for ibdmt course, 'students_e2e_24.txt' for e2e course, 'test_e2e.txt' for test
 
 # main cloud
 CLOUD="cloud-gsom"
@@ -121,8 +124,7 @@ while read lineuser; do
     else
       echo "no action"
     fi
-  #done < roles_ibdmt.txt # ibdmt course
-  done < roles_e2e.txt # e2e course
+  done < ${ROLES_FILE}
 
   # iterate over common roles and add or remove
   # roles for common folder to federated user
@@ -151,6 +153,4 @@ while read lineuser; do
   echo new roles in ${foldername}
   yc resource-manager folder list-access-bindings ${foldername}
 
-#done < students_ibdmt_24.txt # ibdmt course
-done < students_e2e_24.txt # e2e course
-#done < test_e2e.txt
+done < ${USERS_FILE}
